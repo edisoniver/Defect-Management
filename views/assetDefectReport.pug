@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    style.
+      .MsoNormalTable {
+        border: 1px solid windowtext;
+        border-collapse: collapse;
+        width: 647px;
+        margin-left: -1.7pt;
+        mso-border-alt: solid windowtext .5pt;
+        mso-yfti-tbllook: 1184;
+        mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;
+        mso-border-insideh: .5pt solid windowtext;
+        mso-border-insidev: .5pt solid windowtext;
+      }
+      .MsoNormal {
+        margin-bottom: 0cm;
+        line-height: 115%;
+      }
+  body
+    h1 Asset #{assetName} - Defects Report
+    each defect in defects
+      - var overviewPhotoSrc = '/uploads/' + defect.overviewPhoto.url
+      - var closeupPhotoSrc = '/uploads/' + defect.closeupPhoto.url
+      - var overviewFigure = defect.overviewPhoto.figureNumber
+      - var closeupFigure = defect.closeupPhoto.figureNumber
+      - var defectNumber = defect.defectNumber
+      - var description = defect.description
+      include defectReport.pug

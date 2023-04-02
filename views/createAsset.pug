@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Create Asset
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css")
+    link(rel='stylesheet', href='/app.css')
+  body
+    div.container.py-5
+      h1.mb-4 Create Asset
+      form(action='/assets/create', method='POST')
+        label.form-label(for='name') Asset Name
+        input.form-control(type='text', name='name', required)
+        button.btn.btn-primary(type='submit') Create
+      a.btn.btn-outline-primary(href='/assets') Back to Asset Selection
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js", crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js", crossorigin="anonymous")

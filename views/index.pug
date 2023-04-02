@@ -1,0 +1,73 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Defect Tracker
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/app.css")
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand(href="#") BV
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+        div#navbarNav.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item.active
+                    a.nav-link(href="/assets") Assets
+                //- li.nav-item
+                //-     a.nav-link(href="#") Features
+                //- li.nav-item
+                //-     a.nav-link(href="#") Pricing
+                //- li.nav-item.dropdown
+                //-     a.nav-link.dropdown-toggle(href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                //-         Dropdown
+                //-     div.dropdown-menu(aria-labelledby="navbarDropdown")
+                //-         a.dropdown-item(href="#") Action
+                //-         a.dropdown-item(href="#") Another action
+                //-         div.dropdown-divider
+                //-         a.dropdown-item(href="#") Something else here
+
+    .container
+      h1 Defect Tracker
+      form#uploadForm(method="POST", enctype="multipart/form-data")
+        .form-group
+          label(for="asset") Asset
+          select.form-control(name="asset", id="asset", required)
+            option(value='') Select Asset
+            each asset in assets
+              option(value=asset._id)= asset.name
+        input#assetId(type='hidden', name='assetId')
+        .form-group
+          label(for="overviewPhoto") Overview Photo
+          input.form-control(type="file", name="overviewPhoto", id="overviewPhoto", accept="image/*", required)
+        .form-group
+          label(for="closeupPhoto") Close-up Photo
+          input.form-control(type="file", name="closeupPhoto", id="closeupPhoto", accept="image/*", required)
+        .form-group
+          label(for="description") Description
+          textarea.form-control(name="description", id="description", required)
+        .form-group
+          label(for="user") User
+          input.form-control(type="text", name="user", id="user", required)
+          button#compressAndUpload.btn.btn-primary(type='button') Compress and Upload
+          button.btn.btn-primary(type='submit', style='display:none;') Submit
+        script.
+          const form = document.getElementById('uploadForm');
+          const assetSelect = document.getElementById('asset');
+          const assetIdInput = document.getElementById('assetId');
+          assetSelect.addEventListener('change', () => {
+            const selectedAsset = assetSelect.value;
+            form.action = `/upload/${selectedAsset}`;
+            assetIdInput.value = selectedAsset;
+          });
+
+      
+    //-   a(href='/assets') View Assets and Defects
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js', crossorigin='anonymous')
+    script(src="js/bootstrap.bundle.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js", crossorigin="anonymous")
+    script(src="https://cdn.jsdelivr.net/npm/image-compressor.js@1.1.7/dist/image-compressor.min.js")
+    script(src="js/client.js")
+
+
