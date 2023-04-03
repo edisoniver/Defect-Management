@@ -49,6 +49,10 @@ app.get('/', async (req, res) => {
     res.render('index', { assets });
 });
 
+app.get('/annotate', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'annotate.html'));
+});
+
 
 app.post('/upload/:assetId', upload, async (req, res) => {
     const { description, user } = req.body;

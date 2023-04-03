@@ -1,3 +1,5 @@
+
+
 async function compressImage(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
